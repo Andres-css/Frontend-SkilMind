@@ -1,59 +1,112 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const goTo = (route) => {
+  router.push(route);
+};
 </script>
 
 <template>
-  <div id="app">
+  <div id="app" class="d-flex flex-column" style="height: 100vh;">
+    <!-- Header/Nav -->
     <header>
-      <div class="container">
-        <div class="logo">
-          <img src="../assets/Logo SkilMind.png" alt="Logo de la empresa">
+      <nav class="navbar navbar-expand-lg fixed-top custom-bg">
+        <div class="container">
+          <!-- Logo -->
+          <a class="navbar-brand" href="#" @click="goTo('/')">
+            <img src="../assets/Logo SkilMind.png" alt="Logo de la empresa" style="max-height: 60px;">
+          </a>
+
+          <!-- Botón toggle para móviles -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Menú de navegación -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;color: white;" @click="goTo('/')">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;color: white;" @click="goTo('/cursos')">Cursos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;color: white;"
+                  @click="goTo('/certificados')">Certificados</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;color: white;" @click="goTo('/sobre-nosotros')">Sobre
+                  Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;color: white;" @click="goTo('/contactenos')">Contáctenos</a>
+              </li>
+            </ul>
+
+            <!-- Botones de autenticación -->
+            <div class="d-flex ms-lg-3">
+              <button class="btn btn-outline-light me-2" data-bs-toggle="modal"
+                data-bs-target="#loginModal">Acceder</button>
+            </div>
+          </div>
         </div>
-        <nav>
-          <ul>
-            <li><a href="#inicio" class="active">Inicio</a></li>
-            <li><a href="#cursos">Cursos</a></li>
-            <li><a href="#nosotros">Sobre Nosotros</a></li>
-            <li><a href="#contacto">Contactenos</a></li>
-          </ul>
-        </nav>
-        <div class="auth-buttons">
-          <button class="btn btn-secondary" style="margin-right: 40px;">Acceder</button>
-        </div>
-        <button class="menu-toggle" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+      </nav>
     </header>
 
-    <main class="content">
+    <main class="content mt-5 pt-4 flex-grow-1">
       <router-view></router-view>
     </main>
 
-    <footer>
-      <div class="footer-container">
-        <div class="footer-logo">
-          <img src="../assets/Logo SkilMind.png" alt="Logo Footer">
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+              </div>
+              <button type="button" class="btn w-100" style="background-color: #143c64; color: white;">Ingresar</button>
+            </form>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="#inicio">Inicio</a>
-          <a href="#cursos">Cursos</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="custom-bg">
+      <div class="footer-container text-white text-center py-4">
+        <div class="footer-logo mb-3">
+          <img src="../assets/Logo SkilMind.png" alt="Logo Footer" style="max-height: 60px;">
         </div>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
+        <div class="footer-links mb-3">
+          <a style="cursor: pointer;" class="text-white text-decoration-none me-3" @click="goTo('/')">Inicio</a>
+          <a style="cursor: pointer;" class="text-white text-decoration-none me-3" @click="goTo('/cursos')">Cursos</a>
+          <a style="cursor: pointer;" class="text-white text-decoration-none me-3"
+            @click="goTo('/certificados')">Certificados</a>
+          <a style="cursor: pointer;" class="text-white text-decoration-none me-3"
+            @click="goTo('/sobre-nosotros')">Sobre Nosotros</a>
+          <a style="cursor: pointer;" class="text-white text-decoration-none"
+            @click="goTo('/contactenos')">Contáctenos</a>
+        </div>
+        <div class="social-icons mb-3">
+          <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
         </div>
         <p>&copy; 2024 SkilMind. Todos los derechos reservados.</p>
       </div>
@@ -62,200 +115,33 @@ import { ref } from 'vue'
 </template>
 
 <style scoped>
+/* Asegura que el contenido ocupe al menos el 100% de la altura de la pantalla */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
+  /* Esto asegura que #app ocupe al menos toda la altura de la pantalla */
 }
 
-/* Ajustes del encabezado y navegación */
-header {
-  background-color: #143c64;
-  /* Fondo oscuro para mayor contraste */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 1000;
+.content {
+  margin-top: 80px;
+  /* Ajusta para no solaparse con el navbar fijo */
+  flex-grow: 1;
+  /* Asegura que el contenido crezca y empuje el footer al fondo si es necesario */
 }
 
-
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
+.custom-bg {
+  background-color: #143c64 !important;
 }
 
-.logo img {
-  max-height: 100px;
-  /* Tamaño ajustado para mejor proporción */
-  height: auto;
-  margin-left: 6rem;
-  /* Espacio entre el logo y el nav */
-}
-
-/* Navegación */
-nav ul {
-  list-style-type: none;
-  display: none;
-  /* Oculto en móvil por defecto */
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li {
-  margin-left: 1.5rem;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #ffffff;
-  /* Texto blanco para mayor contraste */
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #66b2ff;
-  /* Color de hover */
-}
-
-/* Botones de autenticación */
-.auth-buttons {
-  display: none;
-  /* Oculto en móvil por defecto */
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary {
-  background-color: #66b2ff;
-  /* Color primario */
-  color: #fff;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: #ffffff;
-  /* Blanco para contraste */
-  border: 1px solid #ffffff;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
-/* Botón de menú para móvil */
-.menu-toggle {
-  display: block;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #ffffff;
-  /* Blanco para contraste */
-  margin: 5px 0;
-  transition: all 0.3s ease;
-}
-
-footer {
-  background-color: #143c64;
-  color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-  margin: 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-
-}
-
-footer .footer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-footer .footer-logo img {
-  max-height: 60px;
-  margin-bottom: 1rem;
-}
-
-footer .footer-links {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-footer .footer-links a {
-  text-decoration: none;
-  color: white;
-  transition: color 0.3s ease;
-}
-
-footer .footer-links a:hover {
-  color: #66b2ff;
-}
-
-footer .social-icons {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-footer .social-icons a {
-  color: white;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-}
-
-footer .social-icons a:hover {
-  color: #66b2ff;
-}
-
-/* Mostrar la navegación en dispositivos mayores a 768px */
-@media (min-width: 768px) {
-  nav ul {
-    display: flex;
-  }
-
-  .auth-buttons {
-    display: block;
-  }
-
-  .menu-toggle {
-    display: none;
-  }
-}
-
-@media (min-width: 1024px) {
-  header .container {
-    justify-content: flex-start;
-  }
-
-  nav {
-    margin-left: auto;
-    margin-right: 2rem;
-  }
-
-  .auth-buttons {
-    display: flex;
-    gap: 1rem;
-  }
+footer.custom-bg {
+  margin-top: auto;
+  /* Esto asegura que el footer se mantenga en la parte inferior si el contenido es pequeño */
 }
 </style>

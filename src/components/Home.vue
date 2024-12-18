@@ -76,7 +76,7 @@ function subscribe() {
 </script>
 
 <template>
-    <main style="margin-top: 170px;">
+    <main style="margin-top: 50px;">
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
@@ -220,12 +220,12 @@ h1, h2, h3 {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Portada.jpg') no-repeat center center;
-    background-size: 85%;
+    background-size: 100%;
     background-position: center; /* Para centrar la imagen */
     background-repeat: no-repeat; /* Para evitar que la imagen se repita */
     color: white;
     text-align: center;
-    padding: 4rem 0;
+    padding: 7rem 0;
     border-bottom: 10px solid var(--color-accent);
 }
 
