@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <header class="text-center mb-5">
-            <h1 class="display-4 text-primary">Contáctenos</h1>
+            <h1 class="display-4 text-primary fw-bold">Contáctenos</h1>
             <p class="lead">Estamos aquí para ayudarte. Contáctanos a través de cualquiera de los siguientes medios.</p>
         </header>
 

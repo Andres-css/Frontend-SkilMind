@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from "vue-router";
 import Experto from "../assets/clasificacion.png";
 import Aprendizaje from "../assets/aprender-en-linea.png";
 import Certificacion from "../assets/certificado-de-garantia.png";
@@ -10,6 +11,15 @@ import Programacion from "../assets/programacion.png";
 import Marketing from "../assets/marketing.png";
 import DiseñoUX from "../assets/diseñoux.png";
 
+const router = useRouter()
+
+function irCursos(){
+    router.push('/cursos')
+}
+
+function irDetalleCursos(){
+    router.push('/detalle-curso')
+}
 
 const courses = ref([
   {
@@ -83,8 +93,8 @@ function subscribe() {
                 <h1>Aprende desde cualquier lugar, a tu propio ritmo.</h1>
                 <p>Accede a cursos en línea diseñados por expertos y mejora tus habilidades hoy mismo.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn" style="background-color: #143c64; color: white;">Explorar Cursos</a>
-                    <a href="#" class="btn" style="background-color: #143c64; color: white;">Comenzar Gratis</a>
+                    <a @click="irCursos()" class="btn" style="background-color: #143c64; color: white;">Explorar Cursos</a>
+                    <a @click="irCursos()" class="btn" style="background-color: #143c64; color: white;">Comenzar Gratis</a>
                 </div>
             </div>
         </section>
@@ -98,7 +108,7 @@ function subscribe() {
                         <img :src="course.image" :alt="course.title">
                         <h3>{{ course.title }}</h3>
                         <p>{{ course.description }}</p>
-                        <a href="#" class="btn btn-outline">Ver Detalles</a>
+                        <a @click="irDetalleCursos()" class="btn btn-outline">Ver Detalles</a>
                     </div>
                 </div>
             </div>
